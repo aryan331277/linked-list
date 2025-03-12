@@ -32,6 +32,22 @@ void append(struct Node** head, int data) {
     current->next = newNode;
 }
 
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    newNode->next = *head; // New node points to the current head
+    *head = newNode; // Update head to new node
+}
+
+void deleteFromBeginning(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty!\n");
+        return;
+    }
+    struct Node* temp = *head;
+    *head = (*head)->next; // Move head to next node
+    free(temp); // Free memory of the old head
+}
+
 void printList(struct Node* head){
     struct Node* current=head;
     while(current!=NULL){
