@@ -13,6 +13,25 @@ struct Node* createNode(int data){// declaring a function that takes data and re
     return newNode;//returns the pointer to the New Node
 }
 
+void append(struct Node** head, int data) {
+    // Create a new node with the provided data.
+    struct Node* newNode = createNode(data);
+    
+    // If the list is empty, make the new node the head.
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    
+    // Otherwise, traverse the list to find the last node.
+    struct Node* current = *head;
+    while (current->next != NULL) {
+        current = current->next;  // Move to the next node.
+    }
+    // Link the last node's next pointer to the new node.
+    current->next = newNode;
+}
+
 void printList(struct Node* head){
     struct Node* current=head;
     while(current!=NULL){
@@ -23,6 +42,7 @@ void printList(struct Node* head){
 
 int main() {
     struct Node* node=NULL;
+    
     printList(head);
     return 0;
 }
